@@ -10,6 +10,8 @@ object MyApp {
     if (args.length < 2) {
       println("Please pass input CSV file path and output directo to save reports");
       System.exit(1)
+      
+      
     }
 
     val filePath: String = args(0); // "file:///C:/temp/hpe/source/yellow_tripdata_2018-01.csv" //input CSV file path (yellow_tripdata_2018-01.csv)
