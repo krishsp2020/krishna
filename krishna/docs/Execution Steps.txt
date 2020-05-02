@@ -1,0 +1,16 @@
+1. Download file from https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2018-01.csv then copy to C:\temp\hpe\source\
+2. Copy tripdataETL.jar to C:\temp\hpe\jars\
+3. Create folder C:\temp\hpe\destination
+4. run the below command in windows command promnt (tested in windows where hadoop installed for development apps)
+
+spark-submit --class com.trip.MyApp --master local[*] file:///C:/temp/hpe/jars/tripdataETL.jar file:///C:/temp/hpe/source/yellow_tripdata_2018-01.csv file:///C:/temp/hpe/destination/
+
+
+
+For EMP copy application jar and data source files in emr and execute use below command
+spark-submit --class com.trip.MyApp --master yarn --deploy-mode cluster s3://krishnatempdata/tripdataETL.jar yellow_tripdata_2018-01.csv reports 
+
+for reference to copy file from s3 to ec2 and hadoop file system from ece3
+aws s3 cp s3://krishnatempdata/tripdataETL.jar tripdataETL.jar
+wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2018-01.csv
+hadoop fs -put yellow_tripdata_2018-01.csv
